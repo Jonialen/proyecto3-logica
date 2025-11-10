@@ -1,0 +1,58 @@
+# mt_accept_correcto.txt
+# Especificación de Máquina de Turing
+# Lenguaje: L = {0^n 1^n | n >= 1}
+# Caso: ACEPTACIÓN
+
+# Conjunto de estados
+Q: q1,q2,q3,q4,qaccept,qreject
+
+# Alfabeto de entrada (sin el símbolo blanco)
+Sigma: 0,1
+
+# Alfabeto de entrada (sin el símbolo blanco)
+Sigma: 0,1
+
+# Alfabeto de la cinta (incluye el símbolo blanco ⊔)
+Gamma: 0,1,x,⊔
+
+# Estado inicial
+q0: q1
+
+# Estado de aceptación
+qaccept: qaccept
+
+# Estado de rechazo
+qreject: qreject
+
+# Función de transición delta
+# Formato: (estado_actual,símbolo_leído)->(estado_nuevo,símbolo_escrito,dirección)
+# Dirección: L (izquierda) o R (derecha)
+
+# Algoritmo:
+# 1. q1: Marcar el primer 0 con x, ir a q2
+# 2. q2: Avanzar hasta encontrar el primer 1, marcarlo con x, ir a q3
+# 3. q3: Regresar al inicio (hasta encontrar ⊔), ir a q4
+# 4. q4: Avanzar saltando las x hasta encontrar:
+#    - Si encuentra 0: marca con x y va a q2 para buscar su 1 correspondiente
+#    - Si encuentra ⊔: todo está emparejado, ACEPTAR
+#    - Si encuentra 1: hay más 1s que 0s, RECHAZAR
+
+delta:
+(q1,0)->(q2,x,R)
+(q1,x)->(q1,x,R)
+(q1,1)->(qreject,1,R)
+(q1,⊔)->(qreject,⊔,R)
+(q2,0)->(q2,0,R)
+(q2,x)->(q2,x,R)
+(q2,1)->(q3,x,L)
+(q2,⊔)->(qreject,⊔,R)
+(q3,0)->(q3,0,L)
+(q3,x)->(q3,x,L)
+(q3,⊔)->(q4,⊔,R)
+(q4,x)->(q4,x,R)
+(q4,0)->(q2,x,R)
+(q4,⊔)->(qaccept,⊔,R)
+(q4,1)->(qreject,1,R)
+
+# Cadena de entrada (acepta: 0011)
+input: 0011

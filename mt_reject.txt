@@ -1,0 +1,43 @@
+# mt_reject_correcto.txt
+# Especificación de Máquina de Turing
+# Lenguaje: L = {0^n 1^n | n >= 1}
+# Caso: RECHAZO
+
+# Conjunto de estados
+Q: q1,q2,q3,q4,qaccept,qreject
+
+# Alfabeto de entrada (sin el símbolo blanco)
+Sigma: 0,1
+
+# Alfabeto de la cinta (incluye el símbolo blanco ⊔)
+Gamma: 0,1,x,⊔
+
+# Estado inicial
+q0: q1
+
+# Estado de aceptación
+qaccept: qaccept
+
+# Estado de rechazo
+qreject: qreject
+
+# Función de transición delta
+delta:
+(q1,0)->(q2,x,R)
+(q1,x)->(q1,x,R)
+(q1,1)->(qreject,1,R)
+(q1,⊔)->(qreject,⊔,R)
+(q2,0)->(q2,0,R)
+(q2,x)->(q2,x,R)
+(q2,1)->(q3,x,L)
+(q2,⊔)->(qreject,⊔,R)
+(q3,0)->(q3,0,L)
+(q3,x)->(q3,x,L)
+(q3,⊔)->(q4,⊔,R)
+(q4,x)->(q4,x,R)
+(q4,0)->(q2,x,R)
+(q4,⊔)->(qaccept,⊔,R)
+(q4,1)->(qreject,1,R)
+
+# Cadena de entrada (rechaza: 001 - más 0s que 1s)
+input: 001

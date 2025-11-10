@@ -1,0 +1,53 @@
+# mt_loop_correcto.txt
+# Especificación de Máquina de Turing
+# Lenguaje: L = {0^n 1^n | n >= 1}
+# Caso: CICLO INFINITO
+
+# Conjunto de estados
+Q: q1,q2,q3,q4,qaccept,qreject
+
+# Alfabeto de entrada (sin el símbolo blanco)
+Sigma: 0,1
+
+# Alfabeto de la cinta (incluye el símbolo blanco ⊔)
+Gamma: 0,1,x,⊔
+
+# Estado inicial
+q0: q1
+
+# Estado de aceptación
+qaccept: qaccept
+
+# Estado de rechazo
+qreject: qreject
+
+# Función de transición delta
+# MODIFICACIÓN PARA CICLO INFINITO:
+# En q4, cuando encuentra un 1, en lugar de rechazar,
+# regresa a q3 creando un ciclo infinito q4->q3->q4->q3...
+
+delta:
+(q1,0)->(q2,x,R)
+(q1,x)->(q1,x,R)
+(q1,1)->(qreject,1,R)
+(q1,⊔)->(qreject,⊔,R)
+(q2,0)->(q2,0,R)
+(q2,x)->(q2,x,R)
+(q2,1)->(q3,x,L)
+(q2,⊔)->(qreject,⊔,R)
+(q3,0)->(q3,0,L)
+(q3,x)->(q3,x,L)
+(q3,⊔)->(q4,⊔,R)
+(q4,x)->(q4,x,R)
+(q4,0)->(q2,x,R)
+(q4,1)->(q3,1,L)
+(q4,⊔)->(qaccept,⊔,R)
+
+# Cadena de entrada (ciclo infinito: 011)
+# Marca el primer 0 con x, marca el primer 1 con x
+# Al regresar, encuentra el segundo 1 en q4
+# La transición (q4,1)->(q3,1,L) crea el ciclo:
+# q4 ve 1 -> va a q3 a la izquierda
+# q3 retrocede hasta ⊔ -> va a q4 a la derecha
+# q4 avanza sobre x hasta ver 1 de nuevo -> repite ciclo
+input: 011
