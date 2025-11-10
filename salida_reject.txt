@@ -1,0 +1,18 @@
+CONFIGURACIONES DE LA MÁQUINA DE TURING
+==================================================
+
+q1001
+xq201
+x0q21
+xq30x
+q3x0x
+q3⊔x0x
+⊔q4x0x
+⊔xq40x
+⊔xxq2x
+⊔xxxq2⊔
+⊔xxxqreject⊔
+
+==================================================
+RESULTADO: RECHAZADA
+Número de pasos: 10

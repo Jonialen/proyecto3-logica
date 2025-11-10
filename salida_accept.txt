@@ -1,0 +1,27 @@
+CONFIGURACIONES DE LA MÁQUINA DE TURING
+==================================================
+
+q10011
+xq2011
+x0q211
+xq30x1
+q3x0x1
+q3⊔x0x1
+⊔q4x0x1
+⊔xq40x1
+⊔xxq2x1
+⊔xxxq21
+⊔xxq3xx
+⊔xq3xxx
+⊔q3xxxx
+q3⊔xxxx
+⊔q4xxxx
+⊔xq4xxx
+⊔xxq4xx
+⊔xxxq4x
+⊔xxxxq4⊔
+⊔xxxxqaccept⊔
+
+==================================================
+RESULTADO: ACEPTADA
+Número de pasos: 19
